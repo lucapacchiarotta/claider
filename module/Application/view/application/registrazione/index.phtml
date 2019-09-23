@@ -1,0 +1,23 @@
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <h4>Registrazione</h4>
+
+            <?php
+                $form = $this->form;
+                $form->setAttribute('action', $this->url('registrazione', array('action' => 'save')));
+                $form->prepare();
+
+                echo $this->form()->openTag($form);
+                echo $this->formRow($form->get('email'));
+                echo $this->formRow($form->get('password'));
+                echo $this->formRow($form->get('password2'));
+                echo $this->formRow($form->get('nome'));
+                echo $this->formRow($form->get('cognome'));
+                echo $this->formSubmit($form->get('submit'));
+                echo $this->form()->closeTag();
+            ?>
+        </div>
+    </div>
+</div>
