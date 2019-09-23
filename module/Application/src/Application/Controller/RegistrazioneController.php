@@ -16,6 +16,8 @@ use Zend\View\Model\ViewModel;
 
 class RegistrazioneController extends AbstractActionController {
 
+    protected $registrazioneTable;
+
     public function indexAction()     {
         $form = new RegistrazioneForm();
         $form->get('submit')->setValue('Salva i dati');
@@ -28,17 +30,24 @@ class RegistrazioneController extends AbstractActionController {
 
             if ($form->isValid()) {
                 $registrazione->exchangeArray($form->getData());
-                //$this->getAlbumTable()->saveAlbum($registrazione);
+                $this->getRegistrazioneTable()->saveRegistrazione($registrazione);
 
                 // Redirect to list of albums
-                return $this->redirect()->toUrl('/registrazione/grazie');
+                return $this->redirect()->toRoute('grazie');
             }
         }
         return array('form' => $form);
-        //return new ViewModel();
     }
 
     public function grazieAction() {
         return new ViewModel();
+    }
+
+    public function getRegistrazioneTable() {
+        if (!$this->registrazioneTable) {
+            $sm = $this->getServiceLocator();
+            $this->registrazioneTable = $sm->get('Application\Model\RegistrazioneTable');
+        }
+        return $this->registrazioneTable;
     }
 }

@@ -26,14 +26,20 @@ return array(
                     'route'    => '/registrazione',
                     'defaults' => array(
                         'controller' => 'Application\Controller\Registrazione',
-                        'action'     => 'index',
-                    ),
-                ),
+                        'action'     => 'index'
+                    )
+                )
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
+            'grazie' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/registrazione/grazie',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Registrazione',
+                        'action'     => 'grazie'
+                    )
+                )
+            ),
             'application' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -42,7 +48,7 @@ return array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
-                    ),
+                    )
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
@@ -55,12 +61,12 @@ return array(
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        ),
+                            )
+                        )
+                    )
+                )
+            )
+        )
     ),
     'service_manager' => array(
         'abstract_factories' => array(
@@ -68,8 +74,8 @@ return array(
             'Zend\Log\LoggerAbstractServiceFactory',
         ),
         'aliases' => array(
-            'translator' => 'MvcTranslator',
-        ),
+            'translator' => 'MvcTranslator'
+        )
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -78,14 +84,14 @@ return array(
                 'type'     => 'gettext',
                 'base_dir' => __DIR__ . '/../language',
                 'pattern'  => '%s.mo',
-            ),
-        ),
+            )
+        )
     ),
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
             'Application\Controller\Registrazione' => 'Application\Controller\RegistrazioneController'
-        ),
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -101,13 +107,13 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
-        ),
+        )
     ),
     // Placeholder for console routes
     'console' => array(
         'router' => array(
             'routes' => array(
-            ),
-        ),
-    ),
+            )
+        )
+    )
 );
